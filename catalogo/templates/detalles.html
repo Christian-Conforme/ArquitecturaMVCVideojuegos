@@ -1,0 +1,108 @@
+<!-- templates/detalles.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ videojuego.nombre }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .image-container img {
+            max-width: 50%; /* Ajustar el tamaño máximo de la imagen */
+            height: auto;
+            border-radius: 8px;
+        }
+        .details {
+            margin-bottom: 20px;
+        }
+        .details p {
+            margin: 10px 0;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .comment {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .comment:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{{ videojuego.nombre }}</h1>
+        </div>
+        <div class="image-container">
+            <img src="{{ videojuego.imagen }}" alt="{{ videojuego.nombre }}">
+        </div>
+        <div class="details">
+            <p><strong>Género:</strong> {{ videojuego.género }}</p>
+            <p><strong>Precio:</strong> ${{ videojuego.precio }}</p>
+            <p><strong>Plataforma:</strong> {{ videojuego.plataforma }}</p>
+            <p><strong>Fecha de Lanzamiento:</strong> {{ videojuego.fecha_lanzamiento }}</p>
+            <p><strong>Descripción:</strong> {{ videojuego.descripción }}</p>
+        </div>
+    </div>
+    <a href="{% url 'catalogo' %}" class="back-link">Volver al catálogo</a>
+    <div class="comments-section">
+        <h2>Comentarios</h2>
+        <div id="comments-container">
+            <!-- Comentarios por defecto -->
+            <div class="comment">
+                <p><strong>Juan:</strong> ¡Este juego es increíble!</p>
+            </div>
+            <div class="comment">
+                <p><strong>María:</strong> Me encanta la jugabilidad.</p>
+            </div>
+        </div>
+        <script>
+            // Agregar comentarios usando JavaScript
+            const comments = [
+                { usuario: 'Carlos', texto: 'Los gráficos son impresionantes.' },
+                { usuario: 'Ana', texto: 'La historia es muy envolvente.' }
+            ];
+
+            const commentsContainer = document.getElementById('comments-container');
+            comments.forEach(comment => {
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.innerHTML = `<p><strong>${comment.usuario}:</strong> ${comment.texto}</p>`;
+                commentsContainer.appendChild(commentDiv);
+            });
+        </script>
+    </div>
+</body>
+</html>
