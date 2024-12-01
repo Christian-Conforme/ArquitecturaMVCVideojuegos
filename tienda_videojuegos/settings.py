@@ -74,6 +74,9 @@ WSGI_APPLICATION = 'tienda_videojuegos.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# Asegúrate de instalar psycopg2-binary
+# Ejecuta: pip install psycopg2-binary
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
